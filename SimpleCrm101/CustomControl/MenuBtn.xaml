@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="SimpleCrm101.CustomControl.MenuBtn"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleCrm101.CustomControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="200">
+    <UserControl.Resources>
+        <BitmapImage x:Key="ErrorIcon" UriSource="/Resources/ErrorIcon.png"/>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{x:Null}"
+                                BorderThickness="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Margin="10 0 0 0" Source="{Binding IconSource, ElementName=this,
+                                       FallbackValue={x:Null}, TargetNullValue={StaticResource ErrorIcon}}" Stretch="None"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Text, ElementName=this,
+                                           FallbackValue=Incorrect\ Value, TargetNullValue=text \ buttons}"
+                                           VerticalAlignment="Center" Margin="40 0 0 0"
+                                           FontSize="16" Foreground="#FFB9B9B9"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1F2A39"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="PreviewMouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                        Duration="0:0:0.010" To="#FF192330"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="PreviewMouseUp">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                        Duration="0:0:0.010" To="#FF1F2A39"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Button>        
+
+    </Button> 
+</UserControl>

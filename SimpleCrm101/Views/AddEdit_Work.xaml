@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="SimpleCrm101.Views.AddEdit_Work"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleCrm101.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="gEditJob" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <TextBlock Text="Title: " Margin="0 10 0 0" HorizontalAlignment="Right"/>
+            <TextBlock Text="Standart price: " Margin="0 10 0 0" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBox x:Name="tbTitle" Width="180" Margin="0 10 0 0"  Text="{Binding job.Title}"/>
+            <TextBox x:Name="tbStandartPrice" Width="180" Margin="0 10 0 0"  Text="{Binding job.StandartPrice}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 125 0 0" Grid.ColumnSpan="2">
+            <Button x:Name="btnCancel" Width="120" Height="30"
+                    Content="Cancel" Margin="10 0"
+                    Command="{Binding CancelCmnd}"/>
+            <Button x:Name="btnSaveData" Width="120" Height="30"
+                    Content="Save" Margin="15 0"
+                    Command="{Binding SaveCmnd}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="SimpleCrm101.Views.AddEdit_EmployeeViews"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleCrm101.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid  x:Name="gEditClient" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Name : " Margin="0 0 93 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbName" Width="180" HorizontalAlignment="Right"  Text="{Binding employee.Name}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Surname : " Margin="0 0 68 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbSurName" Width="180" HorizontalAlignment="Right"  Text="{Binding employee.Surname}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Age : " Margin="0 0 110 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbAge" Width="180" HorizontalAlignment="Right" Text="{Binding employee.Age}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock  Text="Email : " Margin="0 0 95 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbEmail" Width="180" HorizontalAlignment="Right" Text="{Binding employee.Email}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Phone : " Margin="0 0 90 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbPhone" Width="180" HorizontalAlignment="Right" Text="{Binding employee.Phone}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Position : " Margin="0 0 75 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbSecondNote2" Width="180" HorizontalAlignment="Right" Text="{Binding employee.Position}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Usename : " Margin="0 0 68 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbUsername" Width="180" HorizontalAlignment="Right" Text="{Binding employee.Usename}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Password : " Margin="0 0 65 0" HorizontalAlignment="Left"/>
+                <TextBox x:Name="tbPassword" Width="180" HorizontalAlignment="Right" Text="{Binding employee.Password}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="1">
+            <Button x:Name="btnCancel" Width="120" Height="30"
+                    Content="Cancel" Margin="15 0 30 0"
+                    Command="{Binding CancelCmnd}"/>
+            <Button x:Name="btnSaveData" Width="120" Height="30"
+                    Content="Save" Margin="25 0 0 0"
+                    Command="{Binding SaveCmnd}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

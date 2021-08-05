@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "data source=localhost; initial catalog=Crm_Db_; integrated security=True"
+  }
+}

@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="SimpleCrm101.Views.OrdersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleCrm101.Views"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="ListOrders" Grid.Row="0" Grid.RowSpan="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="14.4*"/>
+            <RowDefinition Height="1.25*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <TextBox  x:Name="tbFinder" Width="300" Height="30" HorizontalAlignment="Left"
+               Margin="15 0"  Text="{Binding SearchText,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Orientation="Horizontal" Margin="0 0 15 0" HorizontalAlignment="Right">
+                <TextBlock  Text="Show only unfinished projects : "  VerticalAlignment="Center"/>
+                <ToggleButton x:Name="tbShowOnlyIncomplete" IsChecked="{Binding ShowOnlyUnfinishedProjects}" Command="{Binding UnfinishedOrderCmnd}" />
+            </StackPanel>
+            <TextBlock Text="Search by client's last name or job title" Margin="20 0" VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Setter Property="IsHitTestVisible" Value="False"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text.Length, ElementName=tbFinder}" Value="0">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsFocused, ElementName=tbFinder}" Value="True">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <DataGrid x:Name="dgListOrders" Grid.Row="1" Margin="15 5" SelectionMode="Single"
+                    ItemsSource="{Binding Orders}"
+                      SelectedItem="{Binding SelectedOrder, Mode=OneWayToSource}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Employee" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding employee.Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Client" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding client.LastName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Job Template" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding JobTemplate.Title}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Task" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding task.Assignment}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Date" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="10 0 0 0" Text="{Binding Time}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Price" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Price}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Status" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding JobStatus}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Paid" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OrderHasBeenPaid}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.DeleteOrderCmnd, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Width="40" Height="40" Margin="8" Style="{StaticResource btnDelete}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.EditOrderCmnd, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Width="40" Height="40" Margin="8" Style="{StaticResource btnEdit}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnCreateElement" Content="Add order"
+                    Width="200" Height="30" Grid.Row="2"
+                    HorizontalAlignment="Right" Margin="0 0 15 0"
+                 Command="{Binding AddOrderCmnd}"/>
+    </Grid>
+
+</UserControl>
